@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EVE-OS — Edge Virtualization Engine | LF Edge</title>
+<meta name="description" content="EVE-OS is a universal, open Linux-based operating system for distributed edge computing. Secure by design, hardware-agnostic, running VMs, containers and Kubernetes at scale." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%232dd4bf' font-family='sans-serif' font-weight='bold'>E</text></svg>">
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<header class="nav" id="top">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">E</span>
+      <span class="brand-text"><strong>EVE-OS</strong><em>LF EDGE PROJECT</em></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#what">What is EVE</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#workloads">Workloads</a>
+      <a href="#start">Get Started</a>
+      <a href="#usecases">Use Cases</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://github.com/lf-edge/eve" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-primary" href="#start">Try EVE-OS</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero container">
+  <div class="hero-badge">
+    <span class="pulse"></span>
+    Open Source • Linux Foundation • Secure by Design
+  </div>
+  <h1>One OS for the <span class="grad">entire distributed edge.</span></h1>
+  <p class="lead">
+    <strong>EVE-OS (Edge Virtualization Engine)</strong> is a universal, open Linux-based operating system
+    for distributed edge computing. It does for the edge what Android did for mobile —
+    a common, secure foundation for any hardware, any app, any cloud.
+  </p>
+  <div class="hero-actions">
+    <a href="#start" class="btn btn-primary btn-lg">Deploy in 15 minutes →</a>
+    <a href="#architecture" class="btn btn-ghost btn-lg">See how it works</a>
+  </div>
+  <div class="hero-terminal">
+    <div class="term-head"><span></span><span></span><span></span><span class="term-title">eve — quick start</span></div>
+<pre><code><span class="c"># 1. Clone EVE + build live image</span>
+git clone https://github.com/lf-edge/eve.git && cd eve
+make live QEMU_IMG=y
+
+<span class="c"># 2. Boot EVE in QEMU with TPM + Adam controller</span>
+make runeve ADAM=y
+
+<span class="c"># 3. Deploy your first Edge App (nginx)</span>
+eden pod deploy -p 8080:80 --name web nginx:latest
+eden pod ps <span class="c"># ✓ running on EVE-OS</span></code></pre>
+  </div>
+  <div class="stats">
+    <div><strong>x86 • Arm • RISC-V • GPU</strong><span>Any bare metal or VM</span></div>
+    <div><strong>VM + Container + K8s</strong><span>Unified Edge Containers</span></div>
+    <div><strong>Zero-touch • Zero-trust</strong><span>TPM, measured boot, attestation</span></div>
+    <div><strong>OTA + Rollback</strong><span>Never brick a remote device</span></div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="what" class="section container">
+  <p class="kicker">WHAT IS EVE-OS?</p>
+  <h2>Stop managing snowflake edge nodes.<br/>Start orchestrating a fleet.</h2>
+  <p class="sub">Traditional edge = agents on top of Ubuntu + manual SSH + bricked updates. EVE-OS replaces the whole stack with a type-1 hypervisor OS that runs everything as Edge Containers — no logins, no passwords, 100% API-driven.</p>
+  <div class="cards-3">
+    <div class="card">
+      <div class="icon">◈</div>
+      <h3>Zero-Touch</h3>
+      <p>Install once. Never need physical access again. All hardware, network and app lifecycle is managed remotely via controller API — even over flaky links.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⬢</div>
+      <h3>Zero-Trust</h3>
+      <p>No SSH, no usernames, no passwords. TPM-based device identity, measured boot, remote attestation, signed updates and full-disk encryption by default.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⬣</div>
+      <h3>Cloud-Native for Edge</h3>
+      <p>Brings DevOps to the field: declarative config, GitOps workflows, atomic OTA updates with rollback, distributed firewall and automated connectivity.</p>
+    </div>
+  </div>
+  <div class="quote">
+    <p>“EVE-OS aims to do for the distributed edge what Android did for mobile — an open foundation that simplifies development, orchestration and security.”</p>
+    <span>— LF Edge Project EVE</span>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities" class="section container">
+  <p class="kicker">KEY CAPABILITIES</p>
+  <h2>Built for the harsh reality of the field</h2>
+  <div class="grid-2x4">
+    <div class="feat"><h4>🔐 Hardware root of trust</h4><p>TPM 2.0 crypto ID, measured boot, remote attestation, signed updates, encryption at rest.</p></div>
+    <div class="feat"><h4>📦 Any workload</h4><p>Docker/OCI containers, Kubernetes clusters, VMs with any guest OS, and unikernels — side by side.</p></div>
+    <div class="feat"><h4>🖥️ Any hardware</h4><p>x86, Arm, RISC-V, GPU. Bare metal or VM. Assign CPU cores, GPUs and I/O ports per app.</p></div>
+    <div class="feat"><h4>🔄 Unbrickable updates</h4><p>Dual-partition atomic A/B updates with automatic rollback. Patch without truck rolls.</p></div>
+    <div class="feat"><h4>🌐 Resilient networking</h4><p>Distributed firewall, VPN overlays, multi-uplink, offline operation. Policy-based routing per app.</p></div>
+    <div class="feat"><h4>🎛️ Open EVE API</h4><p>Declarative protobuf config from controller. Works with open-source Adam or commercial controllers (e.g. ZEDEDA).</p></div>
+    <div class="feat"><h4>🧊 I/O isolation</h4><p>Block unused USB/serial ports to prevent tampering. Pass through devices securely to specific apps.</p></div>
+    <div class="feat"><h4>📡 Disconnected ops</h4><p>Nodes keep running without controller. Local cached policy enforces last-known-good state.</p></div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" class="section container">
+  <p class="kicker">ARCHITECTURE</p>
+  <h2>Microservices on a hardened hypervisor</h2>
+  <p class="sub">EVE-OS is structured as loosely-coupled microservices (inspired by Qubes OS, ChromeOS, CoreOS) on top of Xen / KVM + LinuxKit. Each domain handles security, updates, connectivity and app orchestration.</p>
+  <div class="arch">
+    <div class="arch-layer apps">
+      <span class="arch-label">Your Edge Apps (Edge Containers)</span>
+      <div class="arch-boxes">
+        <div class="abox">VM <small>Windows / Linux / legacy</small></div>
+        <div class="abox">Containers <small>Docker / OCI</small></div>
+        <div class="abox">Kubernetes <small>k3s / K8s cluster</small></div>
+        <div class="abox">Unikernel <small>lightweight</small></div>
+      </div>
+    </div>
+    <div class="arch-arrow">▲ EVE API — declarative config from controller</div>
+    <div class="arch-layer eve">
+      <span class="arch-label">EVE-OS Services (pillar / domainmgr / zedagent / TPM)</span>
+      <div class="arch-boxes">
+        <div class="abox dim">App Lifecycle</div>
+        <div class="abox dim">Network + Firewall</div>
+        <div class="abox dim">Attestation + Update</div>
+        <div class="abox dim">Storage + Telemetry</div>
+      </div>
+    </div>
+    <div class="arch-layer hw">
+      <span class="arch-label">Bare Metal — Xen/KVM Hypervisor + TPM 2.0 + CPU/GPU/I/O</span>
+    </div>
+    <div class="arch-side">
+      <div><strong>Controller →</strong> Adam (open source, single-node) or ZEDEDA / commercial (fleet scale)</div>
+      <div><strong>Trust →</strong> Controller ↔ EVE mutually authenticate. EVE initiates all connections outbound.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKLOADS -->
+<section id="workloads" class="section container">
+  <p class="kicker">EDGE CONTAINERS</p>
+  <h2>One packaging model for everything</h2>
+  <div class="tabs">
+    <div class="tab-btns">
+      <button class="tab-btn active" data-tab="t1">Containers</button>
+      <button class="tab-btn" data-tab="t2">Virtual Machines</button>
+      <button class="tab-btn" data-tab="t3">Kubernetes</button>
+    </div>
+    <div class="tab-panel active" id="t1">
+      <h3>Docker / OCI as Edge Containers</h3>
+      <p>Push any OCI image to EVE via controller. EVE handles networking, volumes, restarts, logs and remote debug. Ideal for AI inference, protocol gateways, data pipelines.</p>
+<pre><code>eden pod deploy --name infer \
+  -p 8080:8080 --memory 2GB \
+  my-registry/quality-inspect:v2.4</code></pre>
+    </div>
+    <div class="tab-panel" id="t2">
+      <h3>Keep legacy investments</h3>
+      <p>Run full Windows or Linux VMs alongside new containers. Pin vCPUs, pass through GPUs, USB and serial. Migrate SCADA, HMI and VNFs without rewrites.</p>
+<pre><code># eve config snippet (JSON)
+{ "vms": [{ "name": "scada-gw",
+  "guest": "windows-10-iot", "vcpus": 2,
+  "passthrough": ["pci/0000:00:14.0"] }] }</code></pre>
+    </div>
+    <div class="tab-panel" id="t3">
+      <h3>Kubernetes at the edge</h3>
+      <p>Deploy k3s or full K8s as an app on EVE. Let EVE own the hardware, TPM and network while K8s owns microservices. Best of both orchestrators.</p>
+<pre><code>eden pod deploy --name k3s rancher/k3s:v1.29 \
+  --vcpus 4 --memory 8GB --disk 20GB</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- GET STARTED -->
+<section id="start" class="section container">
+  <p class="kicker">GET STARTED / VIRTUAL LAB</p>
+  <h2>Run EVE-OS virtually in 15 minutes</h2>
+  <p class="sub">No hardware needed. Boot EVE in QEMU on your laptop and manage it with the open-source <strong>Adam</strong> controller + <strong>Eden</strong> CLI.</p>
+  <div class="steps">
+    <div class="step"><span>1</span><div><h4>Prerequisites</h4><p>Linux/macOS, 8GB RAM, Docker, QEMU, Go 1.21+. <code>git clone https://github.com/lf-edge/eve.git</code></p></div></div>
+    <div class="step"><span>2</span><div><h4>Build EVE live image</h4><p><code>make live</code> — produces <code>live.raw</code> / ISO. Enable TPM emulation for full attestation demo.</p></div></div>
+    <div class="step"><span>3</span><div><h4>Start Adam + Eden</h4><p><code>eden setup</code> → <code>eden start</code>. Adam serves as local controller with EVE API on :443.</p></div></div>
+    <div class="step"><span>4</span><div><h4>Boot EVE node</h4><p><code>eden eve onboard</code> then <code>make runeve</code>. Watch onboarding in <code>eden eve log</code>.</p></div></div>
+    <div class="step"><span>5</span><div><h4>Deploy apps</h4><p><code>eden pod deploy nginx</code>, expose ports, push configs. Pull logs, exec, update OTA — all remotely.</p></div></div>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://github.com/lf-edge/eve" target="_blank" rel="noopener">★ Star on GitHub</a>
+    <a class="btn btn-ghost" href="https://eve-os.readthedocs.io/" target="_blank" rel="noopener">Read the docs</a>
+    <a class="btn btn-ghost" href="https://github.com/lf-edge/adam" target="_blank" rel="noopener">Adam controller</a>
+  </div>
+  <div class="compare">
+    <h3>EVE-OS vs. agent-on-Ubuntu</h3>
+    <table>
+      <tr><th></th><th>EVE-OS</th><th>Agent approach</th></tr>
+      <tr><td>Remote bricking risk</td><td class="yes">✗ Atomic A/B + rollback</td><td class="no">High — partial apt update can brick</td></tr>
+      <tr><td>Security model</td><td class="yes">TPM, measured boot, no SSH</td><td class="no">SSH keys / passwords to manage</td></tr>
+      <tr><td>Workload types</td><td class="yes">VM + container + K8s unified</td><td class="no">Containers only (or VMs only)</td></tr>
+      <tr><td>Heterogeneous HW</td><td class="yes">One image, x86/Arm/RISC-V</td><td class="no">Per-device golden images</td></tr>
+      <tr><td>Offline resilience</td><td class="yes">Keeps running, cached policy</td><td class="no">Often degrades / stops</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="usecases" class="section container">
+  <p class="kicker">WHERE IT SHINES</p>
+  <h2>From factory floor to far edge</h2>
+  <div class="cards-3">
+    <div class="card"><h3>🏭 Manufacturing</h3><p>Quality-vision AI + legacy SCADA VMs on one IPC. OTA model updates without stopping the line.</p></div>
+    <div class="card"><h3>⚡ Energy & Utilities</h3><p>Biogas, solar and grid gateways with attested telemetry. LF Edge Alvarium + EVE for carbon-footprint audit.</p></div>
+    <div class="card"><h3>🏪 Retail & Smart City</h3><p>Thousands of stores / cameras managed as a fleet. Zero-touch onboarding, VPN backhaul, per-store firewall.</p></div>
+    <div class="card"><h3>📡 Telco / 5G / VNF</h3><p>Run virtual network functions and edge UPF alongside enterprise apps on the same box.</p></div>
+    <div class="card"><h3>🚗 Automotive & Fleet</h3><p>Rugged in-vehicle compute with GPU passthrough for inference, resilient to disconnects.</p></div>
+    <div class="card"><h3>🏥 Healthcare & Oil/Gas</h3><p>Locked-down I/O, encrypted data, remote diagnostics where truck rolls cost thousands.</p></div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="section container">
+  <p class="kicker">RESOURCES</p>
+  <h2>Plug into the community</h2>
+  <div class="res-grid">
+    <a href="https://lfedge.org/projects/eve/" target="_blank" rel="noopener" class="res"><strong>LF Edge EVE page →</strong><span>Official project overview, market & members</span></a>
+    <a href="https://github.com/lf-edge/eve" target="_blank" rel="noopener" class="res"><strong>lf-edge/eve on GitHub →</strong><span>Source, releases, issue tracker</span></a>
+    <a href="https://eve-os.readthedocs.io/" target="_blank" rel="noopener" class="res"><strong>EVE-OS docs →</strong><span>Install, build, API, internals</span></a>
+    <a href="https://github.com/lf-edge/adam" target="_blank" rel="noopener" class="res"><strong>Adam controller →</strong><span>Open-source reference controller</span></a>
+    <a href="https://zededa.com/products/eve-os/" target="_blank" rel="noopener" class="res"><strong>ZEDEDA + EVE →</strong><span>Commercial fleet controller built on EVE</span></a>
+    <a href="https://wiki.lfedge.org/display/EVE" target="_blank" rel="noopener" class="res"><strong>EVE Wiki & roadmap →</strong><span>TSC notes, qualification, storage</span></a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section container">
+  <p class="kicker">FAQ</p>
+  <h2>Quick answers</h2>
+  <div class="faq">
+    <details open><summary>Is EVE-OS a Linux distro I can SSH into?</summary><p>No. EVE-OS is a hypervisor OS — there are no user accounts or SSH. You manage nodes exclusively through a controller via the EVE API. This is what makes it zero-trust and unbrickable.</p></details>
+    <details><summary>What hardware does it need?</summary><p>Any x86, Arm, RISC-V or GPU machine, bare metal or VM. 2+ GB RAM recommended for trials, TPM 2.0 recommended for full security (emulated TPM works in QEMU).</p></details>
+    <details><summary>Do I need a paid controller?</summary><p>No. Use open-source <strong>Adam</strong> for single-node labs. For fleets (monitoring, policies, multi-tenancy at scale) use a commercial controller like ZEDEDA that speaks the same open EVE API.</p></details>
+    <details><summary>How are updates safe?</summary><p>Dual A/B partitions, signed images, automatic rollback on failed boot/health checks. The node always has a known-good image to fall back to.</p></details>
+    <details><summary>Can it run Kubernetes?</summary><p>Yes — run k3s/K8s as an Edge Container app. EVE handles hardware, security and networking; Kubernetes handles your microservices inside.</p></details>
+    <details><summary>Where do I get help?</summary><p>LF Edge Slack (#eve), GitHub issues/discussions, weekly TSC calls and eve-os.readthedocs.io. Contributions welcome — hardware support, docs, testing.</p></details>
+  </div>
+</section>
+
+<section class="cta-final container">
+  <h2>Ready to tame your edge fleet?</h2>
+  <p>Boot a virtual EVE node today. No hardware, no cost, all open source.</p>
+  <div class="hero-actions">
+    <a href="https://github.com/lf-edge/eve" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Get EVE-OS on GitHub</a>
+    <a href="#top" class="btn btn-ghost btn-lg">Back to top ↑</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container foot">
+    <div><strong>EVE-OS</strong> — Edge Virtualization Engine, a <a href="https://lfedge.org" target="_blank" rel="noopener">LF Edge</a> project under the Linux Foundation.<br/><small>This is an unofficial community landing page for learning. EVE-OS, LF Edge and related marks belong to their owners.</small></div>
+    <div class="foot-links">
+      <a href="https://lfedge.org/projects/eve/" target="_blank" rel="noopener">LF Edge</a>
+      <a href="https://github.com/lf-edge/eve" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://eve-os.readthedocs.io/" target="_blank" rel="noopener">Docs</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
